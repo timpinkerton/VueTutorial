@@ -1,0 +1,74 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="root">
+
+        <!-- v-model will set the value of the input to the message value in the Vue instance below -->
+        <input type="text" id="input" v-model="greeting">
+
+        <p>The value of the input is: {{ greeting }}</p>
+
+        <ul>
+            <li v-for="name in names" v-text="name"></li>
+        </ul>
+
+        <input id="nameInput" type="text" v-model="newName">
+
+        <!-- on click this will call the addName() method -->
+        <button @click="addName">Add Name</button>
+
+
+        <button title="this is the title of the button">Hover over this button</button>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+    <script>
+        // creating a Vue instance
+        let app = new Vue({
+
+            //Binding the instance to an element in the DOM w/ where id = 'root'
+            el: '#root',
+
+            data: {
+                newName: '',
+                greeting: 'Hell Oh World',
+                names: ['Dusty', 'Arnie', 'Hammy', 'Sam']
+            },
+
+            methods: {
+                addName() {
+                    this.names.push(this.newName); 
+
+                    this.newName = ''; 
+                }
+
+            }
+
+            //once everything is ready mounted is automatically called
+            // mounted() {
+
+            //     document.querySelector('#button').addEventListener('click', () => {
+
+            //         let name = document.querySelector('#nameInput');
+
+            //         app.names.push(name.value);
+
+            //         name.value = "";
+
+            //     });
+            // }
+        });
+    </script>
+</body>
+
+</html>
